@@ -76,6 +76,7 @@ find_package(OpenJPEG CONFIG REQUIRED)
 find_package(JPEG REQUIRED)
 find_package(PNG REQUIRED)
 find_package(blend2d CONFIG REQUIRED)
+find_package(Fontconfig REQUIRED)
 
 if(VCPKG_TOOLCHAIN)
     find_package(lcms2 REQUIRED)

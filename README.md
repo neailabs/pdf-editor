@@ -1,5 +1,12 @@
-[![CI](https://github.com/JakubMelka/PDF4QT/actions/workflows/ci.yml/badge.svg)](https://github.com/JakubMelka/PDF4QT/actions/workflows/ci.yml)
+Modifications & Changes to the PDF4QT project:
 
+1. ✅ Fixed macOS bundle installation issues
+2. ✅ Resolved C++20 execution policy compatibility problems that arose due to differences in Mac OS versions
+3. ✅ Added fontconfig dependency for font management
+4. ✅ Successfully compiled all PDF4QT applications for ARM64 macOS
+
+These and other changes made have been incorporated (where applicable) into the original README as given below:
+_______________________________________________________________________________________________________________________
 # PDF4QT
 
 **(c) Jakub Melka 2018-2025**
@@ -14,7 +21,7 @@ and document page manipulator application. Software is implementing PDF
 functionality based on PDF Reference 2.0. It is written and maintained
 by Jakub Melka.
 
-*Software works on Microsoft Windows / Linux.*
+*Software works on Microsoft Windows / Linux / macOS*
 
 Software is provided without any warranty of any kind.
 
@@ -73,6 +80,7 @@ Several third-party libraries are used.
 6. LittleCMS, http://www.littlecms.com/
 7. zlib, https://zlib.net/
 8. Blend2D, https://blend2d.com/
+9. Fontconfig, https://www.freedesktop.org/wiki/Software/fontconfig/
 
 ## 5. CONTRIBUTIONS
 
@@ -100,6 +108,9 @@ Alternatively, an AppImage is available in the Releases section. The AppImage fo
 Historically, a .deb package was also offered, but it has been discontinued due to compatibility issues with some Linux distributions.
 The executable names are: Pdf4QtEditor, Pdf4QtDiff, Pdf4QtLaunchPad, Pdf4QtPageMaster, Pdf4QtViewer, and PdfTool.
 
+### MacOS - Silicon (arm64/aarch6)
+The [Release page](https://github.com/neailabs/pdf-editor/releases) lists binaries for M-series Macs, both with and without an installer.
+
 ## 7. COMPILING
 
 This software can be compiled on both Windows and Linux. A compiler supporting the C++20 standard is needed.
@@ -118,16 +129,22 @@ On Linux, a GCC version >= 8 should work, altough we tested it with GCC 11.
 
     Check that vcpkg path is correct: `$VCPKG_ROOT/vcpkg --version`.
 
-2. Build PDF4QT
+2. Build PDF-EDITOR
 
     2.1 Clone repo
 
-        git clone https://github.com/JakubMelka/PDF4QT
-        cd PDF4QT
+        git clone https://github.com/neailabs/pdf-editor
+        cd pdf-editor
 
     2.2 Configure
 
-        cmake -B build -S . -DPDF4QT_INSTALL_QT_DEPENDENCIES=0 -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX='/' -DCMAKE_BUILD_TYPE=Release
+        cmake -B build -S . \
+        -DPDF4QT_INSTALL_QT_DEPENDENCIES=0 \
+        -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake \
+        -DCMAKE_INSTALL_PREFIX='/usr/local' \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_OSX_ARCHITECTURES=arm64 \
+        -DVCPKG_TARGET_TRIPLET=arm64-osx
 
     For a debug build, append `-DCMAKE_BUILD_TYPE=Debug`.
 
@@ -198,6 +215,10 @@ to be able to built Debug build on MS Windows.
 ### Tested Compilers - Linux
  - GCC 13.1.1
 
-## 8. DISCLAIMER
+### Tested Compilers - MacOS
+ - Clang 16.0.0
 
-I wrote this project in my free time. I hope you will find it useful!
+## 8. DISCLAIMER
+This mac (silicon) port of the PDF4QT project was vibe-coded as a demo.
+While it works for a mac (m series), no guarantees are made for the software.
+Use at your own risk.

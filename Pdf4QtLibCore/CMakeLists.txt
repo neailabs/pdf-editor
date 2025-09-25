@@ -176,6 +176,7 @@ target_link_libraries(Pdf4QtLibCore PRIVATE ZLIB::ZLIB)
 target_link_libraries(Pdf4QtLibCore PRIVATE Freetype::Freetype)
 target_link_libraries(Pdf4QtLibCore PRIVATE openjp2)
 target_link_libraries(Pdf4QtLibCore PRIVATE JPEG::JPEG)
+target_link_libraries(Pdf4QtLibCore PRIVATE Fontconfig::Fontconfig)
 
 if(LINUX_GCC)
     target_link_libraries(Pdf4QtLibCore PUBLIC TBB::tbb)

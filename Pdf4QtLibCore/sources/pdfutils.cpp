@@ -333,6 +333,13 @@ std::vector<PDFDependentLibraryInfo> PDFDependentLibraryInfo::getLibraryInfo()
     blend2dInfo.url = tr("https://blend2d.com/");
     result.emplace_back(qMove(blend2dInfo));
 
+    // fontconfig
+    PDFDependentLibraryInfo fontconfigInfo;
+    fontconfigInfo.library = tr("fontconfig");
+    fontconfigInfo.license = tr("2-clause MIT license");
+    fontconfigInfo.version = "2.17.1"; // NE AI Innovation Labs: change later to obtain from CMake
+    fontconfigInfo.url = tr("https://www.freedesktop.org/wiki/Software/fontconfig/");
+    result.emplace_back(qMove(fontconfigInfo));
     return result;
 }
 
